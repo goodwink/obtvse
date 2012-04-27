@@ -1,10 +1,10 @@
 ---
-title:               Obtvse Demo
-tagline:             Clever tagline.
+title:               Badass Rockstar Tech
+tagline:             Attempting to undo the damage of code hipsterism.
 login:               <%= ENV["obtvse_login"] ? ENV["obtvse_login"] : "username" %>
 password:            <%= ENV["obtvse_password"] ? ENV["obtvse_password"] : "password" %>
 name:                Kyle S. Goodwin
 twitter:             reluthan
 github:              goodwink
 email:               goodwink+blog@gmail.com
-google_analytics_id: YOUR_GA_ID
+google_analytics_id: UA-6002487-3
