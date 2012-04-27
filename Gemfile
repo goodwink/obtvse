@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3'
 
 # Extention libraries
-gem 'thin', '~> 1'
+gem 'unicorn'
 
 # Rendering engines and vendor libraries
 gem 'jquery-rails', '~> 2'
@@ -21,11 +21,11 @@ group :production do
 end
 
 group :development do
-  # gem 'heroku', '~> 2'
+  gem 'heroku', '~> 2'
   # gem 'capistrano', '~> 2.9'
-  # gem 'guard', '~> 1'
-  # gem 'guard-rspec', '~> 0.6'
-  # gem 'guard-spork', '~> 0.5'
+  gem 'guard', '~> 1'
+  gem 'guard-rspec', '~> 0.6'
+  gem 'guard-spork', '~> 0.5'
   gem 'rails_best_practices', '~> 1'
 end
 
