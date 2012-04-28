@@ -10,23 +10,24 @@ gem 'jquery-rails', '~> 2'
 gem 'redcarpet'
 
 # Misc libraries
-# gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
+gem 'bcrypt-ruby', '~> 3', require: 'bcrypt'
 gem 'stringex', '~> 1', git: 'git://github.com/rsl/stringex.git'
 gem 'kaminari', '~> 0.13'
 
 group :production do
-  # gem 'newrelic_rpm', '~> 3'
-  # gem 'dalli', '~> 1'
-  gem 'pg', '~> 0.13'
+  gem 'newrelic_rpm'
+  gem 'memcachier'
+  gem 'dalli'
+  gem 'pg'
 end
 
 group :development do
-  gem 'heroku', '~> 2'
+  gem 'heroku'
   # gem 'capistrano', '~> 2.9'
-  gem 'guard', '~> 1'
-  gem 'guard-rspec', '~> 0.6'
-  gem 'guard-spork', '~> 0.5'
-  gem 'rails_best_practices', '~> 1'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'rails_best_practices'
 end
 
 group :test do
