@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_filter :authenticate, :except => [:index, :show]
   layout :choose_layout
 
+  caches_action :index, :show
+
   def index
     @posts = Post.page(params[:page]).per(10).where(draft:false)
 
@@ -78,6 +80,9 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by_slug(params[:slug])
 
+    expire_action :action => :index unless @post.draft
+    expire_action :action => :show, :id => @post
+
     respond_to do |format|
       if @post.update_attributes(params[:post])
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post updated successfully" }
@@ -92,6 +97,9 @@ class PostsController < ApplicationController
   def destroy
     @post = Post.find_by_slug(params[:slug])
     @post.destroy
+
+    expire_action :action => :index
+    expire_action :action => :show, :id => @post
 
     respond_to do |format|
       format.html { redirect_to '/admin' }
