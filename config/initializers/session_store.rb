@@ -8,5 +8,5 @@ Obtvse::Application.config.session_store :cookie_store, :key => '_obtvse_session
 #Obtvse::Application.config.session_store :active_record_store
 
 if Rails.env.production?
-	Rails.application.config.session_store :cache_store
+	Rails.application.config.session_store :dalli_store, :expire_after => 30.minutes
 end

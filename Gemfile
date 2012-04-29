@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', git: 'git://github.com/goodwink/rails.git', branch: 'patch-1'
+gem 'rails', '~> 3'
 
 # Extention libraries
 gem 'unicorn'
