@@ -65,8 +65,10 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    
+
     expire_action :action => :index unless @post.draft
+
+    @post.published_at ||= Time.now unless @post.draft
 
     respond_to do |format|
       if @post.save
@@ -84,6 +86,8 @@ class PostsController < ApplicationController
 
     expire_action :action => :index unless @post.draft && params[:post][:draft]
     expire_action :action => :show, :id => @post
+
+    @post.published_at ||= Time.now unless params[:post][:draft]
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
