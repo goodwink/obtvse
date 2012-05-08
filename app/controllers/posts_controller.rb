@@ -65,6 +65,8 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    
+    expire_action :action => :index unless @post.draft
 
     respond_to do |format|
       if @post.save
@@ -80,7 +82,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by_slug(params[:slug])
 
-    expire_action :action => :index unless @post.draft
+    expire_action :action => :index unless @post.draft && params[:post][:draft]
     expire_action :action => :show, :id => @post
 
     respond_to do |format|
