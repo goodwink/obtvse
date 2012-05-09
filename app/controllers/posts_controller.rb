@@ -66,9 +66,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
 
-    expire_action :action => :index unless @post.draft
-
-    @post.published_at ||= Time.now unless @post.draft
+    unless @post.draft
+      expire_action :action => :index
+      @post.published_at ||= Time.now
+    end
 
     respond_to do |format|
       if @post.save
@@ -84,13 +85,14 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by_slug(params[:slug])
 
-    expire_action :action => :index unless @post.draft && params[:post][:draft]
-    expire_action :action => :show, :id => @post
-
     @post.published_at ||= Time.now unless params[:post][:draft]
+    was_draft = @post.draft
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
+        expire_action :action => :index unless was_draft && @post.draft
+        expire_action @post
+
         format.html { redirect_to "/edit/#{@post.id}", :notice => "Post updated successfully" }
         format.xml { head :ok }
       else
@@ -102,10 +104,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find_by_slug(params[:slug])
-    @post.destroy
 
-    expire_action :action => :index
-    expire_action :action => :show, :id => @post
+    expire_action :action => :index unless @post.draft
+    expire_action @post
+    
+    @post.destroy
 
     respond_to do |format|
       format.html { redirect_to '/admin' }
