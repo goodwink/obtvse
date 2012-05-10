@@ -31,7 +31,7 @@ h1,
 #text-title pre,
 #text-title textarea {
   font-weight: 900;
-  font-size: 35px;
+  font-size: 25px;
 }
 
 p {
@@ -53,7 +53,7 @@ a:hover,
 
 header {
   width: 162px;
-  border-right: 1px solid #DDD;
+  border-right: 1px dashed #DDD;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -94,6 +94,8 @@ header {
 #container {
   margin-left: 243px;
   position: relative;
+  background-color: rgba(255,255,255,0.98);
+  height: 100%;
 
   time {
     display: block;
@@ -101,14 +103,35 @@ header {
     text-transform: uppercase;
     font-weight: 900;
     font-size: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #ddd;
+  }
+}
+
+@media only screen and (max-device-width: 480px) and (orientation: portrait) {
+  header {
+    width: 100%;
+    text-align: center;
+    bottom: 140px;
+
+    ul {
+      margin: 5px 0;
+    }
+
+    li {
+      display: inline;
+    }
+  }
+
+  #container {
+    margin-top: 140px;
+    margin-left: 0px;
   }
 }
 
 #content {
   section {
     padding: 26px 0 40px 50px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px dashed #ddd;
     position: relative;
   }
 
