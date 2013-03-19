@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3'
+gem 'rails', '~> 3.2.13'
 
 # Extention libraries
 gem 'unicorn'
